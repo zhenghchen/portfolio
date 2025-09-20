@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0F1419;
+  color: #FFFFFF;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1F26;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A3038;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4A9EFF;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-accent text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-primary-accentHover hover:-translate-y-0.5 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-primary-surface text-white border border-borders-default px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-primary-surfaceHover hover:border-primary-accent;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-text-secondary border border-borders-default px-4 py-2 rounded-lg text-sm transition-all duration-200 hover:text-white hover:border-primary-accent;
+  }
+  
+  .card {
+    @apply bg-primary-backgroundLighter border border-borders-default rounded-2xl p-8 shadow-lg transition-all duration-300 hover:bg-primary-surface hover:border-borders-accent hover:-translate-y-1 hover:shadow-xl;
+  }
+  
+  .tag {
+    @apply bg-primary-surface text-text-secondary border border-borders-default rounded-md px-3 py-1 text-xs font-medium inline-block m-1;
+  }
+  
+  .tag-highlight {
+    @apply bg-primary-accent/10 text-primary-accent border border-primary-accent/20 rounded-md px-3 py-1 text-xs font-medium;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .section-padding {
+    @apply py-16 px-4;
+  }
+}
