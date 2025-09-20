@@ -6,6 +6,7 @@ import { Navigation } from '@/components/Navigation'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://zhenghchen.dev'),
   title: 'Zheng Chen - Software Engineer | Backend & AI',
   description: 'A creative coder building practical AI tools and high-performance systems.',
   keywords: 'full stack developer, react developer, nextjs, web development, ui ux design, portfolio, ai, machine learning, data science, python, javascript, typescript, html, css, react, nextjs, node.js, express, mongodb, sql, no sql, aws, docker',
