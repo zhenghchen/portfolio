@@ -10,7 +10,6 @@ const navigationItems = [
   { id: 'home', label: 'Home' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' }
 ]
 
@@ -55,7 +54,7 @@ export function Navigation() {
             onClick={() => handleNavClick('home')}
             className="text-xl font-bold text-white hover:text-primary-accent transition-colors duration-200"
           >
-            {personalInfo.name.split(' ')[0]}
+            {personalInfo.name}
           </button>
 
           {/* Desktop Navigation */}
