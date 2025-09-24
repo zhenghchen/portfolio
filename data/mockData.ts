@@ -66,7 +66,7 @@ export interface PersonalInfo {
 // Mock Data
 export const personalInfo: PersonalInfo = {
   name: "Zheng Chen",
-  title: "Software Engineer | Backend & AI",
+  title: "Software Engineer | Fullstack & AI",
   bio: "I build efficient backend systems and practical AI applications, from developing secure RESTful APIs in Java to optimizing high-performance code.",
   location: "Portland, OR",
   email: "chenz22@oregonstate.edu",
@@ -82,83 +82,52 @@ export const personalInfo: PersonalInfo = {
 
 export const workExperience: WorkExperience[] = [
   {
-    id: "1",
-    title: "Senior Full Stack Developer",
-    company: "TechCorp Inc.",
-    companyLogo: "https://via.placeholder.com/60x60/4A9EFF/FFFFFF?text=TC",
-    duration: "2022 - Present",
-    location: "San Francisco, CA",
-    description: "Lead development of scalable web applications serving 100k+ users. Collaborate with cross-functional teams to deliver high-quality products.",
-    achievements: [
-      "Reduced application load time by 40% through optimization",
-      "Led team of 4 developers on major product redesign",
-      "Implemented CI/CD pipeline reducing deployment time by 60%"
+    "id": "1",
+    "title": "AI Research Intern",
+    "company": "Oregon State University",
+    "companyLogo": "https://via.placeholder.com/60x60/4A9EFF/FFFFFF?text=OSU",
+    "duration": "June 2025 - Present",
+    "location": "Remote",
+    "description": "Researched and implemented advanced fine-tuning techniques for machine translation, while automating the evaluation pipeline to significantly accelerate the model development and experimentation lifecycle.",
+    "achievements": [
+      "Achieved a 24.80 BLEU score with fine-tuned Gemma-3-4B on IWSLT17 English to Chinese data as part of a 4-experiment study comparing standard and BitNet-adapter fine-tuning methods.",
+      "Automated the model evaluation lifecycle by integrating live SacreBLEU score computation directly into the training script, eliminating a separate, hour-long evaluation job and collapsing a two-stage manual process into a single, automated SLURM submission."
     ],
-    technologies: ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL", "Docker"]
+    "technologies": ["Python", "PyTorch", "HuggingFace", "SLURM"]
   },
+
   {
-    id: "2",
-    title: "Frontend Developer",
-    company: "StartupXYZ",
-    companyLogo: "https://via.placeholder.com/60x60/059669/FFFFFF?text=SX",
-    duration: "2020 - 2022",
-    location: "Remote",
-    description: "Developed responsive web applications and mobile-first user interfaces. Worked closely with designers to implement pixel-perfect designs.",
-    achievements: [
-      "Built component library used across 5+ products",
-      "Improved mobile conversion rate by 25%",
-      "Mentored 2 junior developers"
+    "id": "2",
+    "title": "Undergraduate Research Assistant",
+    "company": "Oregon State University",
+    "companyLogo": "https://via.placeholder.com/60x60/4A9EFF/FFFFFF?text=OSU",
+    "duration": "Oct 2024 - June 2025",
+    "location": "Corvallis, OR",
+    "description": "Addressed computational bottlenecks in LLM pretraining by implementing and integrating FlashAttention-2, a memory-efficient attention algorithm, to optimize GPU memory access and throughput.",
+    "achievements": [
+      "Accelerated LLM pretraining by 200% through the implementation of FlashAttention-2, reducing the memory access in attention from O(N^2) to O(N) via optimized fused kernels."
     ],
-    technologies: ["React", "Vue.js", "JavaScript", "Sass", "Figma", "Jest"]
-  },
-  {
-    id: "3",
-    title: "Web Developer",
-    company: "Digital Agency Pro",
-    companyLogo: "https://via.placeholder.com/60x60/DC2626/FFFFFF?text=DA",
-    duration: "2019 - 2020",
-    location: "New York, NY",
-    description: "Created custom websites and web applications for diverse clients. Focused on performance optimization and SEO best practices.",
-    achievements: [
-      "Delivered 15+ client projects on time and within budget",
-      "Achieved 95+ PageSpeed scores on all projects",
-      "Increased client website traffic by average of 150%"
-    ],
-    technologies: ["HTML", "CSS", "JavaScript", "WordPress", "PHP", "MySQL"]
+    "technologies": ["Python", "PyTorch", "HuggingFace", "SLURM"]
   }
 ]
 
 export const education: Education[] = [
   {
     id: "1",
-    degree: "Bachelor of Science in Computer Science",
-    institution: "University of California, Berkeley",
+    degree: "B.S. Computer Science",
+    institution: "Oregon State University",
     institutionLogo: "https://via.placeholder.com/60x60/003262/FFFFFF?text=UC",
-    duration: "2015 - 2019",
-    location: "Berkeley, CA",
-    gpa: "3.8/4.0",
-    honors: ["Dean's List", "Magna Cum Laude"],
+    duration: "2024 - 2028",
+    location: "Corvallis, OR",
+    gpa: "3.94/4.0",
+    honors: ["Dean's List"],
     relevantCourses: [
-      "Data Structures & Algorithms",
-      "Software Engineering",
-      "Database Systems",
-      "Human-Computer Interaction",
-      "Web Development"
-    ]
-  },
-  {
-    id: "2",
-    degree: "Full Stack Web Development Bootcamp",
-    institution: "General Assembly",
-    institutionLogo: "https://via.placeholder.com/60x60/FF6B35/FFFFFF?text=GA",
-    duration: "2019",
-    location: "San Francisco, CA",
-    relevantCourses: [
-      "React & Redux",
-      "Node.js & Express",
-      "MongoDB & PostgreSQL",
-      "RESTful APIs",
-      "Authentication & Security"
+      "Linear Algebra",
+      "Vector Calculus",
+      "Discrete Math",
+      "Web Development",
+      "Computer Architecture",
+      "Statistics"
     ]
   }
 ]

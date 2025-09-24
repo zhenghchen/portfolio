@@ -7,7 +7,11 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className = '', children, hover = true, ...props }, ref) => {
-    const cardClasses = ['card', !hover && 'hover:transform-none hover:shadow-lg', className]
+    const cardClasses = [
+      'card', 
+      !hover && 'hover:!bg-primary-backgroundLighter hover:!border-borders-default hover:!transform-none hover:!shadow-lg', 
+      className
+    ]
       .filter(Boolean)
       .join(' ')
     
