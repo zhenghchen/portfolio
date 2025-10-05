@@ -12,10 +12,22 @@ export function AnimatedBackground() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Set canvas size
+    let animationFrameId: number
+    let stars: Star[] = []
+    let shootingStars: ShootingStar[] = []
+    let shootingStarTimer = 0
+
+    // Set canvas size and regenerate stars
     const setCanvasSize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
+      
+      // Regenerate stars with new canvas size
+      const starCount = Math.min(Math.floor((canvas.width * canvas.height) / 3000), 400)
+      stars = []
+      for (let i = 0; i < starCount; i++) {
+        stars.push(new Star())
+      }
     }
     setCanvasSize()
     window.addEventListener('resize', setCanvasSize)
@@ -194,24 +206,9 @@ export function AnimatedBackground() {
       }
     }
 
-    // Create stars - much more visible!
-    const canvasWidth = canvas?.width || window.innerWidth
-    const canvasHeight = canvas?.height || window.innerHeight
-    const starCount = Math.min(Math.floor((canvasWidth * canvasHeight) / 3000), 400)
-    const stars: Star[] = []
-    
-    for (let i = 0; i < starCount; i++) {
-      stars.push(new Star())
-    }
-
-    const constellation = new Constellation(stars)
-
-    // Shooting stars array
-    const shootingStars: ShootingStar[] = []
-    let shootingStarTimer = 0
-
     // Animation loop
     const animate = () => {
+      const constellation = new Constellation(stars)
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -241,7 +238,7 @@ export function AnimatedBackground() {
         }
       }
 
-      requestAnimationFrame(animate)
+      animationFrameId = requestAnimationFrame(animate)
     }
 
     animate()
@@ -249,6 +246,7 @@ export function AnimatedBackground() {
     // Cleanup
     return () => {
       window.removeEventListener('resize', setCanvasSize)
+      cancelAnimationFrame(animationFrameId)
     }
   }, [])
 
