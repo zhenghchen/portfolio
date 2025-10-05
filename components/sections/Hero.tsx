@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { personalInfo } from '@/data/mockData'
 import { scrollToSection } from '@/lib/utils'
@@ -75,14 +76,17 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl border-2 border-borders-default shadow-2xl bg-primary-surface flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">👨‍💻</div>
-                  <div className="text-text-muted">Profile Image</div>
-                </div>
+              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-[2rem] border-2 border-borders-default shadow-2xl bg-primary-surface overflow-hidden">
+                <Image
+                  src={personalInfo.profileImage}
+                  alt={`${personalInfo.name} profile picture`}
+                  fill
+                  className="object-cover rounded-[2rem]"
+                  priority
+                />
               </div>
               
               {/* Decorative elements */}

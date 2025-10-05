@@ -68,10 +68,10 @@ export const personalInfo: PersonalInfo = {
   name: "Zheng Chen",
   title: "Software Engineer | Fullstack & AI",
   bio: "I build efficient backend systems and practical AI applications, from developing secure RESTful APIs in Java to optimizing high-performance code.",
-  location: "Portland, OR",
+  location: "Clackamas, OR",
   email: "chenz22@oregonstate.edu",
-  phone: "+1 (971)-340-8699",
-  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+  phone: "971-340-8699",
+  profileImage: "/assets/me.jpg",
   resumeUrl: "/resume.pdf",
   socialLinks: {
     github: "https://github.com/zhenghchen",
@@ -90,7 +90,7 @@ export const workExperience: WorkExperience[] = [
     "location": "Remote",
     "description": "Researched and implemented advanced fine-tuning techniques for machine translation, while automating the evaluation pipeline to significantly accelerate the model development and experimentation lifecycle.",
     "achievements": [
-      "Achieved a 24.80 BLEU score with fine-tuned Gemma-3-4B on IWSLT17 English to Chinese data as part of a 4-experiment study comparing standard and BitNet-adapter fine-tuning methods.",
+      "Drove a 117% performance increase in the team's Gemma-3-4B baseline model (from 24.80 to 54 BLEU), diagnosing and engineering a data preprocessing solution that appended end-of-sequence (EOS) tokens.",
       "Automated the model evaluation lifecycle by integrating live SacreBLEU score computation directly into the training script, eliminating a separate, hour-long evaluation job and collapsing a two-stage manual process into a single, automated SLURM submission."
     ],
     "technologies": ["Python", "PyTorch", "HuggingFace", "SLURM"]
@@ -116,18 +116,18 @@ export const education: Education[] = [
     id: "1",
     degree: "B.S. Computer Science",
     institution: "Oregon State University",
-    institutionLogo: "https://via.placeholder.com/60x60/003262/FFFFFF?text=UC",
-    duration: "2024 - 2028",
+    institutionLogo: "https://via.placeholder.com/60x60/003262/FFFFFF?text=OSU",
+    duration: "Sept 2024 - June 2028",
     location: "Corvallis, OR",
-    gpa: "3.94/4.0",
+    gpa: "3.96/4.0",
     honors: ["Dean's List"],
     relevantCourses: [
-      "Linear Algebra",
-      "Vector Calculus",
-      "Discrete Math",
+      "Data Structures",
       "Web Development",
       "Computer Architecture",
-      "Statistics"
+      "Object-Oriented Programming",
+      "Linear Algebra",
+      "Discrete Mathematics"
     ]
   }
 ]
@@ -135,95 +135,55 @@ export const education: Education[] = [
 export const projects: Project[] = [
   {
     id: "1",
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with React, Node.js, and PostgreSQL",
-    longDescription: "A comprehensive e-commerce platform featuring user authentication, product catalog, shopping cart, payment processing, and admin dashboard. Built with modern technologies and following best practices for security and performance.",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis", "Docker"],
+    title: "Redflagged",
+    description: "Full-stack legal document analysis platform with AI-powered risk extraction (HackMIT 2025)",
+    longDescription: "Architected a comprehensive legal document analysis platform leveraging React/TypeScript frontend, Python backend, and Supabase for authentication and vector storage. Implemented secure RESTful API with FastAPI for document ingestion, preprocessing, and AI-powered risk extraction, enabling scalable handling of 500,000 character PDF/DOCX files. Developed RAG pipeline with HuggingFace Xenova and LangChain for semantic chunking and embedding generation. Built companion Chrome extension for seamless in-browser document highlighting and analysis.",
+    technologies: ["TypeScript", "React", "Python", "Tailwind CSS", "FastAPI", "Supabase", "HuggingFace", "LangChain", "Chrome Extension"],
     images: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop"
+      "/assets/redflagged1.png",
+      "/assets/redflagged2.png"
     ],
-    demoUrl: "https://ecommerce-demo.vercel.app",
-    sourceUrl: "https://github.com/zhenghchen/ecommerce-platform",
-    uiSourceUrl: "https://figma.com/ecommerce-design",
+    demoUrl: "https://redflaggy.vercel.app",
+    sourceUrl: "https://github.com/zhenghchen/redflagged",
     featured: true,
     category: "Full Stack"
   },
   {
     id: "2",
-    title: "Task Management App",
-    description: "Collaborative task management with real-time updates and team features",
-    longDescription: "A modern task management application with drag-and-drop functionality, real-time collaboration, team workspaces, and detailed analytics. Features include Kanban boards, calendar view, and advanced filtering.",
-    technologies: ["Next.js", "TypeScript", "Prisma", "Socket.io", "Tailwind CSS"],
+    title: "MCP-Guardian",
+    description: "Security middleware for AI Agent ecosystems with JWT authentication and rate limiting",
+    longDescription: "Delivered a comprehensive security middleware for AI Agent ecosystems, enabling secure tool access via a single decorator-based API. Implemented configurable JWT authentication with RS256 signatures, scope-based authorization, and rate limiting for production-ready security. Established a security audit trail with structured JSON logging for real-time monitoring and compliance, capturing detailed authentication and authorization events to provide security teams with actionable intelligence for rapid incident response. Published as a Python package to PyPI with comprehensive documentation and real-world examples, reducing developer integration time from hours to minutes.",
+    technologies: ["Python", "FastAPI", "JWT"],
     images: [
-      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop"
+      "/assets/mcp-guardian1.png"
     ],
-    demoUrl: "https://taskmanager-demo.vercel.app",
-    sourceUrl: "https://github.com/zhenghchen/task-manager",
+    sourceUrl: "https://github.com/zhenghchen/mcp-guardian",
     featured: true,
-    category: "Web App"
+    category: "Security/Infrastructure"
   },
   {
     id: "3",
-    title: "Weather Dashboard",
-    description: "Responsive weather app with location-based forecasts and analytics",
-    longDescription: "A beautiful weather dashboard providing detailed forecasts, interactive maps, historical data, and weather analytics. Features include location search, favorite locations, and severe weather alerts.",
-    technologies: ["React", "Chart.js", "OpenWeather API", "Mapbox", "PWA"],
+    title: "Eulerian Fluid Simulation",
+    description: "Real-time C++ fluid simulation implementing Navier-Stokes equations (390K+ LinkedIn impressions)",
+    longDescription: "Engineered a real-time C++ fluid simulation from first principles that generated 390,000+ impressions on LinkedIn, demonstrating ability to communicate complex technical work effectively. Implemented stable fluid solver applying incompressible Navier-Stokes equations, utilizing pressure projection and semi-Lagrangian advection for realistic, divergence-free flow. Achieved real-time performance (60+ FPS) on 200x200 grid through optimized data structures and efficient rendering pipeline within ~2MB memory footprint.",
+    technologies: ["C++", "OpenGL", "CMake", "GLSL", "Physics Simulation"],
     images: [
-      "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=600&fit=crop"
+      "/assets/FluidSIm1.png",
+      "/assets/fluidsim2.png"
     ],
-    demoUrl: "https://weather-dashboard-demo.vercel.app",
-    sourceUrl: "https://github.com/zhenghchen/weather-dashboard",
+    sourceUrl: "https://github.com/zhenghchen/Eulerian-Fluid-Sim",
     featured: true,
-    category: "Web App"
+    category: "Graphics/Simulation"
   },
   {
     id: "4",
-    title: "Portfolio Website",
-    description: "Personal portfolio built with Next.js and modern design principles",
-    longDescription: "A modern, responsive portfolio website showcasing projects, experience, and blog posts. Built with Next.js, TypeScript, and Tailwind CSS, featuring smooth animations and optimized performance.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    images: [
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop"
-    ],
-    demoUrl: "https://zhenghchen.dev",
-    sourceUrl: "https://github.com/zhenghchen/portfolio",
+    title: "AI Writing Assistant (Chrome Extension)",
+    description: "Chrome extension with Java Spring Boot backend for AI-powered writing assistance",
+    longDescription: "Designed and implemented a robust RESTful backend using Java Spring Boot, supporting secure user authentication and encrypted API key management for cross-device synchronization. Built Chrome extension frontend with React and TypeScript, integrating real-time chat functionality and comprehensive settings dashboard. Developed modular backend architecture as provider-agnostic proxy, enabling seamless integration and dynamic switching between multiple LLM providers.",
+    technologies: ["Java", "Spring Boot", "React", "TypeScript", "Chrome Extension API", "REST API"],
+    images: [],
+    sourceUrl: "https://github.com/zhenghchen/Silq",
     featured: false,
-    category: "Portfolio"
-  }
-]
-
-export const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Building Scalable React Applications",
-    excerpt: "Learn best practices for structuring and scaling React applications for production environments.",
-    content: "Full blog content here...",
-    publishDate: "2024-01-15",
-    readTime: "8 min read",
-    tags: ["React", "JavaScript", "Architecture"],
-    featured: true
+    category: "AI/ML"
   },
-  {
-    id: "2",
-    title: "The Future of Web Development",
-    excerpt: "Exploring upcoming trends and technologies that will shape the future of web development.",
-    content: "Full blog content here...",
-    publishDate: "2024-01-10",
-    readTime: "6 min read",
-    tags: ["Web Development", "Trends", "Technology"],
-    featured: true
-  },
-  {
-    id: "3",
-    title: "Optimizing Database Performance",
-    excerpt: "Tips and techniques for improving database query performance and overall application speed.",
-    content: "Full blog content here...",
-    publishDate: "2024-01-05",
-    readTime: "10 min read",
-    tags: ["Database", "Performance", "Optimization"],
-    featured: false
-  }
 ]
