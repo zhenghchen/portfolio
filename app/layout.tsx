@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   keywords: 'Zheng Chen, Software Engineer, AI Research, Full Stack Developer, Oregon State University, Machine Learning, Python, Java, TypeScript, React, Next.js, PyTorch, HuggingFace, FastAPI, Spring Boot',
   authors: [{ name: 'Zheng Chen' }],
   creator: 'Zheng Chen',
+  icons: {
+    icon: '/assets/portfolio_favicon.png',
+    shortcut: '/assets/portfolio_favicon.png',
+    apple: '/assets/portfolio_favicon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
