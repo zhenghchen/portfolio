@@ -2,6 +2,27 @@
 
 import { useEffect, useRef } from 'react'
 
+interface Star {
+  x: number
+  y: number
+  size: number
+  opacity: number
+  twinkleSpeed: number
+  twinklePhase: number
+  brightness: number
+}
+
+interface ShootingStar {
+  x: number
+  y: number
+  length: number
+  speed: number
+  angle: number
+  opacity: number
+  life: number
+  maxLife: number
+}
+
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -13,228 +34,169 @@ export function AnimatedBackground() {
     if (!ctx) return
 
     let animationFrameId: number
-    let stars: any[] = []
-    let shootingStars: any[] = []
+    let stars: Star[] = []
+    let shootingStars: ShootingStar[] = []
     let shootingStarTimer = 0
 
-    // Star class
-    class Star {
-      x: number
-      y: number
-      size: number
-      opacity: number
-      twinkleSpeed: number
-      twinklePhase: number
-      brightness: number
+    // Helper functions
+    const createStar = (): Star => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2.5 + 0.5,
+      brightness: Math.random(),
+      opacity: Math.random() * 0.6 + 0.6,
+      twinkleSpeed: Math.random() * 0.03 + 0.01,
+      twinklePhase: Math.random() * Math.PI * 2
+    })
 
-      constructor() {
-        this.x = Math.random() * (canvas?.width || window.innerWidth)
-        this.y = Math.random() * (canvas?.height || window.innerHeight)
-        this.size = Math.random() * 2.5 + 0.5
-        this.brightness = Math.random()
-        this.opacity = Math.random() * 0.6 + 0.6
-        this.twinkleSpeed = Math.random() * 0.03 + 0.01
-        this.twinklePhase = Math.random() * Math.PI * 2
-      }
-
-      update() {
-        this.twinklePhase += this.twinkleSpeed
-      }
-
-      draw() {
-        if (!ctx) return
-        
-        const twinkle = Math.sin(this.twinklePhase) * 0.3 + 0.7
-        const currentOpacity = this.opacity * twinkle
-
-        // Draw star
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        
-        // White or blue-white stars
-        const color = this.brightness > 0.7 ? '200, 220, 255' : '255, 255, 255'
-        ctx.fillStyle = `rgba(${color}, ${currentOpacity})`
-        ctx.fill()
-
-        // Add glow for brighter stars
-        if (this.brightness > 0.8) {
-          ctx.beginPath()
-          ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(${color}, ${currentOpacity * 0.2})`
-          ctx.fill()
-        }
+    const createShootingStar = (): ShootingStar => {
+      const side = Math.random()
+      const x = side < 0.5 ? Math.random() * canvas.width : canvas.width + 50
+      const y = side < 0.5 ? -50 : Math.random() * canvas.height * 0.5
+      
+      return {
+        x,
+        y,
+        length: Math.random() * 120 + 80,
+        speed: Math.random() * 4 + 3,
+        angle: Math.random() * Math.PI / 6 + Math.PI / 4,
+        opacity: 1,
+        life: 0,
+        maxLife: Math.random() * 120 + 100
       }
     }
 
-    // Shooting Star class
-    class ShootingStar {
-      x: number
-      y: number
-      length: number
-      speed: number
-      angle: number
-      opacity: number
-      life: number
-      maxLife: number
+    const updateStar = (star: Star) => {
+      star.twinklePhase += star.twinkleSpeed
+    }
 
-      constructor() {
-        // Start from random position at top or sides
-        const side = Math.random()
-        const canvasWidth = canvas?.width || window.innerWidth
-        const canvasHeight = canvas?.height || window.innerHeight
-        
-        if (side < 0.5) {
-          this.x = Math.random() * canvasWidth
-          this.y = -50
-        } else {
-          this.x = canvasWidth + 50
-          this.y = Math.random() * canvasHeight * 0.5
-        }
-        
-        this.length = Math.random() * 120 + 80
-        this.speed = Math.random() * 4 + 3
-        this.angle = Math.random() * Math.PI / 6 + Math.PI / 4 // 45-75 degrees
-        this.opacity = 1
-        this.life = 0
-        this.maxLife = Math.random() * 120 + 100
-      }
+    const drawStar = (star: Star) => {
+      const twinkle = Math.sin(star.twinklePhase) * 0.3 + 0.7
+      const currentOpacity = star.opacity * twinkle
 
-      update() {
-        this.x += Math.cos(this.angle) * this.speed
-        this.y += Math.sin(this.angle) * this.speed
-        this.life++
+      ctx.beginPath()
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
+      
+      const color = star.brightness > 0.7 ? '200, 220, 255' : '255, 255, 255'
+      ctx.fillStyle = `rgba(${color}, ${currentOpacity})`
+      ctx.fill()
 
-        // Fade out near end of life
-        if (this.life > this.maxLife * 0.7) {
-          this.opacity = 1 - (this.life - this.maxLife * 0.7) / (this.maxLife * 0.3)
-        }
-      }
-
-      draw() {
-        if (!ctx) return
-
-        ctx.save()
-        ctx.translate(this.x, this.y)
-        ctx.rotate(this.angle)
-
-        // Draw shooting star trail
-        const gradient = ctx.createLinearGradient(0, 0, -this.length, 0)
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`)
-        gradient.addColorStop(0.5, `rgba(200, 220, 255, ${this.opacity * 0.5})`)
-        gradient.addColorStop(1, 'rgba(200, 220, 255, 0)')
-
-        ctx.strokeStyle = gradient
-        ctx.lineWidth = 3
+      if (star.brightness > 0.8) {
         ctx.beginPath()
-        ctx.moveTo(0, 0)
-        ctx.lineTo(-this.length, 0)
-        ctx.stroke()
-
-        // Draw bright head with glow
-        const glowGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 8)
-        glowGradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`)
-        glowGradient.addColorStop(0.5, `rgba(200, 220, 255, ${this.opacity * 0.5})`)
-        glowGradient.addColorStop(1, 'rgba(200, 220, 255, 0)')
-        
-        ctx.beginPath()
-        ctx.arc(0, 0, 8, 0, Math.PI * 2)
-        ctx.fillStyle = glowGradient
+        ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(${color}, ${currentOpacity * 0.2})`
         ctx.fill()
-
-        // Bright core
-        ctx.beginPath()
-        ctx.arc(0, 0, 3, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
-        ctx.fill()
-
-        ctx.restore()
-      }
-
-      isDead() {
-        const canvasWidth = canvas?.width || window.innerWidth
-        const canvasHeight = canvas?.height || window.innerHeight
-        return this.life >= this.maxLife || this.x > canvasWidth + 100 || this.y > canvasHeight + 100
       }
     }
 
-    // Constellation class (connects nearby stars)
-    class Constellation {
-      stars: Star[]
+    const updateShootingStar = (shootingStar: ShootingStar) => {
+      shootingStar.x += Math.cos(shootingStar.angle) * shootingStar.speed
+      shootingStar.y += Math.sin(shootingStar.angle) * shootingStar.speed
+      shootingStar.life++
 
-      constructor(stars: Star[]) {
-        this.stars = stars
+      if (shootingStar.life > shootingStar.maxLife * 0.7) {
+        shootingStar.opacity = 1 - (shootingStar.life - shootingStar.maxLife * 0.7) / (shootingStar.maxLife * 0.3)
       }
+    }
 
-      draw() {
-        if (!ctx) return
+    const drawShootingStar = (shootingStar: ShootingStar) => {
+      ctx.save()
+      ctx.translate(shootingStar.x, shootingStar.y)
+      ctx.rotate(shootingStar.angle)
 
-        for (let i = 0; i < this.stars.length; i++) {
-          for (let j = i + 1; j < this.stars.length; j++) {
-            const dx = this.stars[i].x - this.stars[j].x
-            const dy = this.stars[i].y - this.stars[j].y
-            const distance = Math.sqrt(dx * dx + dy * dy)
+      const gradient = ctx.createLinearGradient(0, 0, -shootingStar.length, 0)
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${shootingStar.opacity})`)
+      gradient.addColorStop(0.5, `rgba(200, 220, 255, ${shootingStar.opacity * 0.5})`)
+      gradient.addColorStop(1, 'rgba(200, 220, 255, 0)')
 
-            // Connect nearby stars more visibly
-            if (distance < 150) {
-              const opacity = 0.15 * (1 - distance / 150)
-              if (opacity > 0.02) {
-                ctx.beginPath()
-                ctx.strokeStyle = `rgba(78, 150, 255, ${opacity})`
-                ctx.lineWidth = 0.5
-                ctx.moveTo(this.stars[i].x, this.stars[i].y)
-                ctx.lineTo(this.stars[j].x, this.stars[j].y)
-                ctx.stroke()
-              }
+      ctx.strokeStyle = gradient
+      ctx.lineWidth = 3
+      ctx.beginPath()
+      ctx.moveTo(0, 0)
+      ctx.lineTo(-shootingStar.length, 0)
+      ctx.stroke()
+
+      const glowGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 8)
+      glowGradient.addColorStop(0, `rgba(255, 255, 255, ${shootingStar.opacity})`)
+      glowGradient.addColorStop(0.5, `rgba(200, 220, 255, ${shootingStar.opacity * 0.5})`)
+      glowGradient.addColorStop(1, 'rgba(200, 220, 255, 0)')
+      
+      ctx.beginPath()
+      ctx.arc(0, 0, 8, 0, Math.PI * 2)
+      ctx.fillStyle = glowGradient
+      ctx.fill()
+
+      ctx.beginPath()
+      ctx.arc(0, 0, 3, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(255, 255, 255, ${shootingStar.opacity})`
+      ctx.fill()
+
+      ctx.restore()
+    }
+
+    const isShootingStarDead = (shootingStar: ShootingStar): boolean => {
+      return shootingStar.life >= shootingStar.maxLife || 
+             shootingStar.x > canvas.width + 100 || 
+             shootingStar.y > canvas.height + 100
+    }
+
+    const drawConstellations = () => {
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x
+          const dy = stars[i].y - stars[j].y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          if (distance < 150) {
+            const opacity = 0.15 * (1 - distance / 150)
+            if (opacity > 0.02) {
+              ctx.beginPath()
+              ctx.strokeStyle = `rgba(78, 150, 255, ${opacity})`
+              ctx.lineWidth = 0.5
+              ctx.moveTo(stars[i].x, stars[i].y)
+              ctx.lineTo(stars[j].x, stars[j].y)
+              ctx.stroke()
             }
           }
         }
       }
     }
 
-    // Set canvas size and regenerate stars
     const setCanvasSize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
       
-      // Regenerate stars with new canvas size
       const starCount = Math.min(Math.floor((canvas.width * canvas.height) / 3000), 400)
       stars = []
       for (let i = 0; i < starCount; i++) {
-        stars.push(new Star())
+        stars.push(createStar())
       }
     }
     
     setCanvasSize()
     window.addEventListener('resize', setCanvasSize)
 
-    // Animation loop
     const animate = () => {
-      const constellation = new Constellation(stars)
-      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Draw constellation lines (subtle)
-      constellation.draw()
+      drawConstellations()
 
-      // Update and draw stars
       stars.forEach(star => {
-        star.update()
-        star.draw()
+        updateStar(star)
+        drawStar(star)
       })
 
-      // Spawn shooting stars more frequently
       shootingStarTimer++
       if (shootingStarTimer > 80 && Math.random() > 0.95) {
-        shootingStars.push(new ShootingStar())
+        shootingStars.push(createShootingStar())
         shootingStarTimer = 0
       }
 
-      // Update and draw shooting stars
       for (let i = shootingStars.length - 1; i >= 0; i--) {
-        shootingStars[i].update()
-        shootingStars[i].draw()
+        updateShootingStar(shootingStars[i])
+        drawShootingStar(shootingStars[i])
         
-        if (shootingStars[i].isDead()) {
+        if (isShootingStarDead(shootingStars[i])) {
           shootingStars.splice(i, 1)
         }
       }
@@ -244,7 +206,6 @@ export function AnimatedBackground() {
 
     animate()
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', setCanvasSize)
       cancelAnimationFrame(animationFrameId)
@@ -259,4 +220,3 @@ export function AnimatedBackground() {
     />
   )
 }
-
