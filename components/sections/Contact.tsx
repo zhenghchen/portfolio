@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { personalInfo } from '@/data/mockData'
@@ -20,6 +21,17 @@ export function Contact() {
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // EmailJS Configuration
+  const EMAILJS_SERVICE_ID = 'service_0c1g77a'
+  const EMAILJS_TEMPLATE_ID = 'template_u5i082o'
+  const EMAILJS_PUBLIC_KEY = '7hr9S4q0s1w7NszDJ'
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY)
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -29,16 +41,47 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus('idle')
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    setIsSubmitting(false)
-    
-    // In a real app, you would handle the form submission here
-    console.log('Form submitted:', formData)
+    try {
+      // Send email using EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: personalInfo.name,
+        to_email: personalInfo.email,
+        reply_to: formData.email
+      }
+
+      console.log('Sending email with params:', templateParams)
+
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      )
+
+      console.log('Email sent successfully:', result)
+      setSubmitStatus('success')
+      
+      // Reset form after successful submission
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      
+    } catch (error) {
+      console.error('Failed to send email:', error)
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        text: error.text,
+        status: error.status
+      })
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactMethods = [
@@ -165,6 +208,32 @@ export function Contact() {
               <h3 className="text-xl font-semibold text-white mb-6">Send me a message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Success Message */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
+                    <div className="flex items-center space-x-2">
+                      <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-green-400 font-medium">Message sent successfully!</p>
+                    </div>
+                    <p className="text-green-300 text-sm mt-1">Thank you for reaching out. I'll get back to you soon!</p>
+                  </div>
+                )}
+
+                {/* Error Message */}
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                    <div className="flex items-center space-x-2">
+                      <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <p className="text-red-400 font-medium">Failed to send message</p>
+                    </div>
+                    <p className="text-red-300 text-sm mt-1">Please try again or contact me directly via email.</p>
+                  </div>
+                )}
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">

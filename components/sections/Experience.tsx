@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-// import Image from 'next/image' // Temporarily disabled
+import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Tag } from '@/components/ui/Tag'
 import { workExperience, education } from '@/data/mockData'
@@ -56,8 +56,20 @@ export function Experience() {
                     <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                       {/* Company Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-lg bg-primary-surface flex items-center justify-center text-2xl font-bold text-primary-accent">
-                          {job.company.charAt(0)}
+                        <div className="w-16 h-16 rounded-lg bg-primary-surface overflow-hidden flex items-center justify-center">
+                          {job.companyLogo ? (
+                            <Image
+                              src={job.companyLogo}
+                              alt={`${job.company} logo`}
+                              width={64}
+                              height={64}
+                              className="object-contain"
+                            />
+                          ) : (
+                            <div className="text-2xl font-bold text-primary-accent">
+                              {job.company.charAt(0)}
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -117,8 +129,20 @@ export function Experience() {
                     <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                       {/* Institution Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-lg bg-primary-surface flex items-center justify-center text-2xl font-bold text-primary-accent">
-                          {edu.institution.charAt(0)}
+                        <div className="w-16 h-16 rounded-lg bg-primary-surface overflow-hidden flex items-center justify-center">
+                          {edu.institutionLogo ? (
+                            <Image
+                              src={edu.institutionLogo}
+                              alt={`${edu.institution} logo`}
+                              width={64}
+                              height={64}
+                              className="object-contain"
+                            />
+                          ) : (
+                            <div className="text-2xl font-bold text-primary-accent">
+                              {edu.institution.charAt(0)}
+                            </div>
+                          )}
                         </div>
                       </div>
 
