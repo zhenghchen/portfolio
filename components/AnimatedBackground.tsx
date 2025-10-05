@@ -13,24 +13,9 @@ export function AnimatedBackground() {
     if (!ctx) return
 
     let animationFrameId: number
-    let stars: Star[] = []
-    let shootingStars: ShootingStar[] = []
+    let stars: any[] = []
+    let shootingStars: any[] = []
     let shootingStarTimer = 0
-
-    // Set canvas size and regenerate stars
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      
-      // Regenerate stars with new canvas size
-      const starCount = Math.min(Math.floor((canvas.width * canvas.height) / 3000), 400)
-      stars = []
-      for (let i = 0; i < starCount; i++) {
-        stars.push(new Star())
-      }
-    }
-    setCanvasSize()
-    window.addEventListener('resize', setCanvasSize)
 
     // Star class
     class Star {
@@ -205,6 +190,22 @@ export function AnimatedBackground() {
         }
       }
     }
+
+    // Set canvas size and regenerate stars
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      
+      // Regenerate stars with new canvas size
+      const starCount = Math.min(Math.floor((canvas.width * canvas.height) / 3000), 400)
+      stars = []
+      for (let i = 0; i < starCount; i++) {
+        stars.push(new Star())
+      }
+    }
+    
+    setCanvasSize()
+    window.addEventListener('resize', setCanvasSize)
 
     // Animation loop
     const animate = () => {
