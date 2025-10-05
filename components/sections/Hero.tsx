@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
+import { AnimatedBackground } from '@/components/AnimatedBackground'
 import { personalInfo } from '@/data/mockData'
 import { scrollToSection } from '@/lib/utils'
 
@@ -15,8 +16,11 @@ export function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center section-padding pt-32">
-      <div className="max-w-6xl mx-auto">
+    <section id="home" className="relative min-h-screen flex items-center justify-center section-padding pt-32 overflow-hidden">
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="space-y-8">
