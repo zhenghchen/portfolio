@@ -52,6 +52,9 @@ export interface PersonalInfo {
   }
 }
 
+// Base path for GitHub Pages deployment
+const basePath = process.env.NODE_ENV === 'production' ? '/portfolio' : '';
+
 // Mock Data
 export const personalInfo: PersonalInfo = {
   name: "Zheng Chen",
@@ -60,8 +63,8 @@ export const personalInfo: PersonalInfo = {
   location: "Clackamas, OR",
   email: "chenz22@oregonstate.edu",
   phone: "971-340-8699",
-  profileImage: "/assets/me.jpg",
-  resumeUrl: "/resume.pdf",
+  profileImage: `${basePath}/assets/me.jpg`,
+  resumeUrl: `${basePath}/resume.pdf`,
   socialLinks: {
     github: "https://github.com/zhenghchen",
     linkedin: "https://linkedin.com/in/zhenghchen",
@@ -74,7 +77,7 @@ export const workExperience: WorkExperience[] = [
     "id": "1",
     "title": "AI Research Intern",
     "company": "Oregon State University",
-    "companyLogo": "/assets/osulogo.png",
+    "companyLogo": `${basePath}/assets/osulogo.png`,
     "duration": "June 2025 - Present",
     "location": "Remote",
     "description": "Researched and implemented advanced fine-tuning techniques for machine translation, while automating the evaluation pipeline to significantly accelerate the model development and experimentation lifecycle.",
@@ -89,7 +92,7 @@ export const workExperience: WorkExperience[] = [
     "id": "2",
     "title": "Undergraduate Research Assistant",
     "company": "Oregon State University",
-    "companyLogo": "/assets/osulogo.png",
+    "companyLogo": `${basePath}/assets/osulogo.png`,
     "duration": "Oct 2024 - June 2025",
     "location": "Corvallis, OR",
     "description": "Addressed computational bottlenecks in LLM pretraining by implementing and integrating FlashAttention-2, a memory-efficient attention algorithm, to optimize GPU memory access and throughput.",
@@ -105,7 +108,7 @@ export const education: Education[] = [
     id: "1",
     degree: "B.S. Computer Science",
     institution: "Oregon State University",
-    institutionLogo: "/assets/osulogo.png",
+    institutionLogo: `${basePath}/assets/osulogo.png`,
     duration: "Sept 2024 - June 2028",
     location: "Corvallis, OR",
     gpa: "3.96/4.0",
@@ -129,8 +132,8 @@ export const projects: Project[] = [
     longDescription: "Architected a comprehensive legal document analysis platform leveraging React/TypeScript frontend, Python backend, and Supabase for authentication and vector storage. Implemented secure RESTful API with FastAPI for document ingestion, preprocessing, and AI-powered risk extraction, enabling scalable handling of 500,000 character PDF/DOCX files. Developed RAG pipeline with HuggingFace Xenova and LangChain for semantic chunking and embedding generation. Built companion Chrome extension for seamless in-browser document highlighting and analysis.",
     technologies: ["TypeScript", "React", "Python", "Tailwind CSS", "FastAPI", "Supabase", "HuggingFace", "LangChain", "Chrome Extension"],
     images: [
-      "/assets/redflagged1.png",
-      "/assets/redflagged2.png"
+      `${basePath}/assets/redflagged1.png`,
+      `${basePath}/assets/redflagged2.png`
     ],
     demoUrl: "https://redflaggy.vercel.app",
     sourceUrl: "https://github.com/zhenghchen/redflagged",
@@ -144,7 +147,7 @@ export const projects: Project[] = [
     longDescription: "Delivered a comprehensive security middleware for AI Agent ecosystems, enabling secure tool access via a single decorator-based API. Implemented configurable JWT authentication with RS256 signatures, scope-based authorization, and rate limiting for production-ready security. Established a security audit trail with structured JSON logging for real-time monitoring and compliance, capturing detailed authentication and authorization events to provide security teams with actionable intelligence for rapid incident response. Published as a Python package to PyPI with comprehensive documentation and real-world examples, reducing developer integration time from hours to minutes.",
     technologies: ["Python", "FastAPI", "JWT"],
     images: [
-      "/assets/mcp-guardian1.png"
+      `${basePath}/assets/mcp-guardian1.png`
     ],
     sourceUrl: "https://github.com/zhenghchen/mcp-guardian",
     featured: true,
@@ -157,8 +160,8 @@ export const projects: Project[] = [
     longDescription: "Engineered a real-time C++ fluid simulation from first principles that generated 390,000+ impressions on LinkedIn, demonstrating ability to communicate complex technical work effectively. Implemented stable fluid solver applying incompressible Navier-Stokes equations, utilizing pressure projection and semi-Lagrangian advection for realistic, divergence-free flow. Achieved real-time performance (60+ FPS) on 200x200 grid through optimized data structures and efficient rendering pipeline within ~2MB memory footprint.",
     technologies: ["C++", "OpenGL", "CMake", "GLSL", "Physics Simulation"],
     images: [
-      "/assets/FluidSIm1.png",
-      "/assets/fluidsim2.png"
+      `${basePath}/assets/FluidSIm1.png`,
+      `${basePath}/assets/fluidsim2.png`
     ],
     sourceUrl: "https://github.com/zhenghchen/Eulerian-Fluid-Sim",
     featured: true,
