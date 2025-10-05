@@ -72,12 +72,14 @@ export function Contact() {
       
     } catch (error) {
       console.error('Failed to send email:', error)
-      console.error('Error details:', {
-        name: error.name,
-        message: error.message,
-        text: error.text,
-        status: error.status
-      })
+      if (error && typeof error === 'object') {
+        console.error('Error details:', {
+          name: (error as any).name,
+          message: (error as any).message,
+          text: (error as any).text,
+          status: (error as any).status
+        })
+      }
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -119,7 +121,7 @@ export function Contact() {
   ]
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding bg-primary-backgroundLighter">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">

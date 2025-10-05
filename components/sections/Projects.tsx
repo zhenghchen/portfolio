@@ -21,7 +21,7 @@ export function Projects() {
 
   return (
     <>
-      <section id="projects" className="section-padding">
+      <section id="projects" className="section-padding bg-primary-background">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -203,7 +203,7 @@ export function Projects() {
 
               {/* Project Images */}
               <div className="grid md:grid-cols-2 gap-6 mb-8">
-                {modalData.images?.map((image, idx) => (
+                {modalData.images?.map((image: string, idx: number) => (
                   <div key={idx} className="relative h-64 rounded-xl overflow-hidden bg-primary-surface">
                     <Image
                       src={image}
@@ -219,7 +219,7 @@ export function Projects() {
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-white mb-4">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3">
-                  {modalData.technologies.map((tech, idx) => (
+                  {modalData.technologies.map((tech: string, idx: number) => (
                     <Tag key={idx} variant="highlight">{tech}</Tag>
                   ))}
                 </div>

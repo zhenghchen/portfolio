@@ -31,8 +31,8 @@ export function AnimatedBackground() {
       brightness: number
 
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        this.x = Math.random() * (canvas?.width || window.innerWidth)
+        this.y = Math.random() * (canvas?.height || window.innerHeight)
         this.size = Math.random() * 2.5 + 0.5
         this.brightness = Math.random()
         this.opacity = Math.random() * 0.6 + 0.6
@@ -83,12 +83,15 @@ export function AnimatedBackground() {
       constructor() {
         // Start from random position at top or sides
         const side = Math.random()
+        const canvasWidth = canvas?.width || window.innerWidth
+        const canvasHeight = canvas?.height || window.innerHeight
+        
         if (side < 0.5) {
-          this.x = Math.random() * canvas.width
+          this.x = Math.random() * canvasWidth
           this.y = -50
         } else {
-          this.x = canvas.width + 50
-          this.y = Math.random() * canvas.height * 0.5
+          this.x = canvasWidth + 50
+          this.y = Math.random() * canvasHeight * 0.5
         }
         
         this.length = Math.random() * 120 + 80
@@ -151,7 +154,9 @@ export function AnimatedBackground() {
       }
 
       isDead() {
-        return this.life >= this.maxLife || this.x > canvas.width + 100 || this.y > canvas.height + 100
+        const canvasWidth = canvas?.width || window.innerWidth
+        const canvasHeight = canvas?.height || window.innerHeight
+        return this.life >= this.maxLife || this.x > canvasWidth + 100 || this.y > canvasHeight + 100
       }
     }
 
@@ -190,7 +195,9 @@ export function AnimatedBackground() {
     }
 
     // Create stars - much more visible!
-    const starCount = Math.min(Math.floor((canvas.width * canvas.height) / 3000), 400)
+    const canvasWidth = canvas?.width || window.innerWidth
+    const canvasHeight = canvas?.height || window.innerHeight
+    const starCount = Math.min(Math.floor((canvasWidth * canvasHeight) / 3000), 400)
     const stars: Star[] = []
     
     for (let i = 0; i < starCount; i++) {

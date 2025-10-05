@@ -36,17 +36,6 @@ export interface Project {
   category: string
 }
 
-export interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  content: string
-  publishDate: string
-  readTime: string
-  tags: string[]
-  featured: boolean
-}
-
 export interface PersonalInfo {
   name: string
   title: string
