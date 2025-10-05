@@ -5,6 +5,8 @@ import { Navigation } from '@/components/Navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const basePath = process.env.NODE_ENV === 'production' ? '/portfolio' : ''
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://zhenghchen.github.io/portfolio'),
   title: 'Zheng Chen - Software Engineer | Fullstack & AI',
@@ -13,9 +15,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Zheng Chen' }],
   creator: 'Zheng Chen',
   icons: {
-    icon: '/assets/portfolio_favicon.png',
-    shortcut: '/assets/portfolio_favicon.png',
-    apple: '/assets/portfolio_favicon.png',
+    icon: `${basePath}/assets/portfolio_favicon.png`,
+    shortcut: `${basePath}/assets/portfolio_favicon.png`,
+    apple: `${basePath}/assets/portfolio_favicon.png`,
   },
   openGraph: {
     type: 'website',
