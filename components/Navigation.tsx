@@ -23,8 +23,13 @@ export function Navigation() {
   }
 
   const handleResumeDownload = () => {
-    // In a real app, this would trigger a download
-    window.open(personalInfo.resumeUrl, '_blank')
+    // Create a temporary link element to trigger download
+    const link = document.createElement('a')
+    link.href = personalInfo.resumeUrl
+    link.download = `${personalInfo.name.replace(' ', '_')}_Resume.pdf`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const handleShare = async () => {
