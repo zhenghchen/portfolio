@@ -75,29 +75,29 @@ export const personalInfo: PersonalInfo = {
 export const workExperience: WorkExperience[] = [
   {
     "id": "1",
-    "title": "AI Research Intern",
+    "title": "Teaching Assistant - Object Oriented Programming",
     "company": "Oregon State University",
     "companyLogo": `${basePath}/assets/osulogo.png`,
-    "duration": "June 2025 - Present",
-    "location": "Remote",
+    "duration": "Sept 2025 - Present",
+    "location": "Corvallis, OR",
+    "description": "Led and mentored a cohort of 100+ students weekly across four lab sessions, solidifying their understanding of object-oriented programming and data structure fundamentals in Python.",
+    "achievements": [
+      "Translated complex CS theory into practical application by leading hands-on demonstrations on systematic debugging, Git version control, and advanced topics like polymorphism and algorithmic complexity."
+    ],
+    "technologies": ["Python"]
+  },
+  {
+    "id": "2",
+    "title": "AI Research Internship",
+    "company": "Oregon State University",
+    "companyLogo": `${basePath}/assets/osulogo.png`,
+    "duration": "Oct 2024 - Sept 2025",
+    "location": "Corvallis, OR",
     "description": "Researched and implemented advanced fine-tuning techniques for machine translation, while automating the evaluation pipeline to significantly accelerate the model development and experimentation lifecycle.",
     "achievements": [
       "Drove a 117% performance increase in the team's Gemma-3-4B baseline model (from 24.80 to 54 BLEU), diagnosing and engineering a data preprocessing solution that appended end-of-sequence (EOS) tokens.",
-      "Automated the model evaluation lifecycle by integrating live SacreBLEU score computation directly into the training script, eliminating a separate, hour-long evaluation job and collapsing a two-stage manual process into a single, automated SLURM submission."
-    ],
-    "technologies": ["Python", "PyTorch", "HuggingFace", "SLURM"]
-  },
-
-  {
-    "id": "2",
-    "title": "Undergraduate Research Assistant",
-    "company": "Oregon State University",
-    "companyLogo": `${basePath}/assets/osulogo.png`,
-    "duration": "Oct 2024 - June 2025",
-    "location": "Corvallis, OR",
-    "description": "Addressed computational bottlenecks in LLM pretraining by implementing and integrating FlashAttention-2, a memory-efficient attention algorithm, to optimize GPU memory access and throughput.",
-    "achievements": [
-      "Accelerated LLM pretraining by 200% through the implementation of FlashAttention-2, reducing the memory access in attention from O(N^2) to O(N) via optimized fused kernels."
+      "Accelerated large language model (LLM) pretraining by 200% through the implementation of FlashAttention-2, reducing attention memory complexity from O(N^2) to O(N) via custom CUDA fused kernels.",
+      "Automated the model evaluation lifecycle by integrating real-time SacreBLEU scoring into training scripts, reducing evaluation runtime from over an hour to minutes and streamlining SLURM job submission."
     ],
     "technologies": ["Python", "PyTorch", "HuggingFace", "SLURM"]
   }
@@ -106,20 +106,19 @@ export const workExperience: WorkExperience[] = [
 export const education: Education[] = [
   {
     id: "1",
-    degree: "B.S. Computer Science",
+    degree: "B.S. Computer Science - Applied AI",
     institution: "Oregon State University",
     institutionLogo: `${basePath}/assets/osulogo.png`,
-    duration: "Sept 2024 - June 2028",
+    duration: "Expected Graduation: June 2027",
     location: "Corvallis, OR",
     gpa: "3.96/4.0",
     honors: ["Dean's List"],
     relevantCourses: [
+      "Operating Systems",
+      "Algorithms",
       "Data Structures",
-      "Web Development",
       "Computer Architecture",
-      "Object-Oriented Programming",
-      "Linear Algebra",
-      "Discrete Mathematics"
+      "Linear Algebra"
     ]
   }
 ]
