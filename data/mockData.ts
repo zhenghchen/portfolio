@@ -109,7 +109,7 @@ export const education: Education[] = [
     degree: "B.S. Computer Science - Applied AI",
     institution: "Oregon State University",
     institutionLogo: `${basePath}/assets/osulogo.png`,
-    duration: "Expected Graduation: June 2027",
+    duration: "Expected Graduation: June 2027/2028",
     location: "Corvallis, OR",
     gpa: "3.96/4.0",
     honors: ["Dean's List"],
@@ -117,8 +117,10 @@ export const education: Education[] = [
       "Operating Systems",
       "Algorithms",
       "Data Structures",
-      "Computer Architecture",
-      "Linear Algebra"
+      "Computer Architecture & Assembly",
+      "Linear Algebra",
+      "Web Development",
+      "Software Engineering"
     ]
   }
 ]
