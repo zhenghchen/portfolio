@@ -142,6 +142,33 @@ export const projects: Project[] = [
   },
   {
     id: "2",
+    title: "MCP-Guardian",
+    description: "Security middleware for AI Agent ecosystems with JWT authentication and rate limiting",
+    longDescription: "Delivered a comprehensive security middleware for AI Agent ecosystems, enabling secure tool access via a single decorator-based API. Implemented configurable JWT authentication with RS256 signatures, scope-based authorization, and rate limiting for production-ready security. Established a security audit trail with structured JSON logging for real-time monitoring and compliance, capturing detailed authentication and authorization events to provide security teams with actionable intelligence for rapid incident response. Published as a Python package to PyPI with comprehensive documentation and real-world examples, reducing developer integration time from hours to minutes.",
+    technologies: ["Python", "FastAPI", "JWT"],
+    images: [
+      `${basePath}/assets/mcp-guardian1.png`
+    ],
+    sourceUrl: "https://github.com/zhenghchen/mcp-guardian",
+    featured: true,
+    category: "Security/Infrastructure"
+  },
+  {
+    id: "3",
+    title: "Eulerian Fluid Simulation",
+    description: "Real-time C++ fluid simulation implementing Navier-Stokes equations (390K+ LinkedIn impressions)",
+    longDescription: "Engineered a real-time C++ fluid simulation from first principles that generated 390,000+ impressions on LinkedIn, demonstrating ability to communicate complex technical work effectively. Implemented stable fluid solver applying incompressible Navier-Stokes equations, utilizing pressure projection and semi-Lagrangian advection for realistic, divergence-free flow. Achieved real-time performance (60+ FPS) on 200x200 grid through optimized data structures and efficient rendering pipeline within ~2MB memory footprint.",
+    technologies: ["C++", "OpenGL", "CMake", "GLSL", "Physics Simulation"],
+    images: [
+      `${basePath}/assets/FluidSIm1.png`,
+      `${basePath}/assets/fluidsim2.png`
+    ],
+    sourceUrl: "https://github.com/zhenghchen/Eulerian-Fluid-Sim",
+    featured: true,
+    category: "Graphics/Simulation"
+  },
+  {
+    id: "4",
     title: "Libra",
     description: "AI debate training copilot with real-time transcription, fallacy detection, and fact-checking",
     longDescription: "Built an end-to-end debate coaching system with a React Native mobile app and Flask backend. Implemented turn-based audio capture, transcription, fallacy detection, and an agentic fact-checking pipeline with source attribution, plus post-debate summaries and analytics. Designed the architecture for parallel analysis and progressive UI updates so users receive faster, transparent feedback during each debate round.",
@@ -155,20 +182,7 @@ export const projects: Project[] = [
     category: "Mobile Full Stack"
   },
   {
-    id: "3",
-    title: "MCP-Guardian",
-    description: "Security middleware for AI Agent ecosystems with JWT authentication and rate limiting",
-    longDescription: "Delivered a comprehensive security middleware for AI Agent ecosystems, enabling secure tool access via a single decorator-based API. Implemented configurable JWT authentication with RS256 signatures, scope-based authorization, and rate limiting for production-ready security. Established a security audit trail with structured JSON logging for real-time monitoring and compliance, capturing detailed authentication and authorization events to provide security teams with actionable intelligence for rapid incident response. Published as a Python package to PyPI with comprehensive documentation and real-world examples, reducing developer integration time from hours to minutes.",
-    technologies: ["Python", "FastAPI", "JWT"],
-    images: [
-      `${basePath}/assets/mcp-guardian1.png`
-    ],
-    sourceUrl: "https://github.com/zhenghchen/mcp-guardian",
-    featured: true,
-    category: "Security/Infrastructure"
-  },
-  {
-    id: "4",
+    id: "5",
     title: "Redflagged",
     description: "Full-stack legal document analysis platform with AI-powered risk extraction (HackMIT 2025)",
     longDescription: "Architected a comprehensive legal document analysis platform leveraging React/TypeScript frontend, Python backend, and Supabase for authentication and vector storage. Implemented secure RESTful API with FastAPI for document ingestion, preprocessing, and AI-powered risk extraction, enabling scalable handling of 500,000 character PDF/DOCX files. Developed RAG pipeline with HuggingFace Xenova and LangChain for semantic chunking and embedding generation. Built companion Chrome extension for seamless in-browser document highlighting and analysis.",
@@ -181,20 +195,6 @@ export const projects: Project[] = [
     sourceUrl: "https://github.com/zhenghchen/redflagged",
     featured: false,
     category: "Full Stack"
-  },
-  {
-    id: "5",
-    title: "Eulerian Fluid Simulation",
-    description: "Real-time C++ fluid simulation implementing Navier-Stokes equations (390K+ LinkedIn impressions)",
-    longDescription: "Engineered a real-time C++ fluid simulation from first principles that generated 390,000+ impressions on LinkedIn, demonstrating ability to communicate complex technical work effectively. Implemented stable fluid solver applying incompressible Navier-Stokes equations, utilizing pressure projection and semi-Lagrangian advection for realistic, divergence-free flow. Achieved real-time performance (60+ FPS) on 200x200 grid through optimized data structures and efficient rendering pipeline within ~2MB memory footprint.",
-    technologies: ["C++", "OpenGL", "CMake", "GLSL", "Physics Simulation"],
-    images: [
-      `${basePath}/assets/FluidSIm1.png`,
-      `${basePath}/assets/fluidsim2.png`
-    ],
-    sourceUrl: "https://github.com/zhenghchen/Eulerian-Fluid-Sim",
-    featured: true,
-    category: "Graphics/Simulation"
   },
   {
     id: "6",
