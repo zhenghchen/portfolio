@@ -120,7 +120,7 @@ export const education: Education[] = [
       "Computer Architecture & Assembly",
       "Linear Algebra",
       "Web Development",
-      "Software Engineering"
+      "Software Engineering 1 & 2"
     ]
   }
 ]
@@ -128,21 +128,34 @@ export const education: Education[] = [
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Redflagged",
-    description: "Full-stack legal document analysis platform with AI-powered risk extraction (HackMIT 2025)",
-    longDescription: "Architected a comprehensive legal document analysis platform leveraging React/TypeScript frontend, Python backend, and Supabase for authentication and vector storage. Implemented secure RESTful API with FastAPI for document ingestion, preprocessing, and AI-powered risk extraction, enabling scalable handling of 500,000 character PDF/DOCX files. Developed RAG pipeline with HuggingFace Xenova and LangChain for semantic chunking and embedding generation. Built companion Chrome extension for seamless in-browser document highlighting and analysis.",
-    technologies: ["TypeScript", "React", "Python", "Tailwind CSS", "FastAPI", "Supabase", "HuggingFace", "LangChain", "Chrome Extension"],
+    title: "AI Filtering Workflow",
+    description: "Multi-agent AI pipeline for investor screening and due diligence (CalHacks 2025)",
+    longDescription: "Built an AI-native investor screening system that cuts diligence time from about one hour to under 10 minutes by orchestrating four specialized Claude agents in parallel. Implemented concurrent multi-agent analysis to achieve roughly 3x faster processing (about 15s versus 45s per analysis) while preserving decision quality. Added an autonomous verification layer using Model Context Protocol (MCP) with Google Custom Search to cross-reference founder claims across multiple web sources, and designed a PostgreSQL schema with JSONB columns and GIN indexes for efficient querying of nested conversation metadata and real-time update triggers.",
+    technologies: ["TypeScript", "Next.js", "React", "Supabase", "PostgreSQL", "Anthropic Claude", "MCP", "Google Custom Search API"],
     images: [
-      `${basePath}/assets/redflagged1.png`,
-      `${basePath}/assets/redflagged2.png`
+      `${basePath}/assets/aifiltering.png`
     ],
-    demoUrl: "https://redflaggy.vercel.app",
-    sourceUrl: "https://github.com/zhenghchen/redflagged",
+    demoUrl: "https://alpha-foundry-cal.vercel.app/",
+    sourceUrl: "https://github.com/cyu60/alpha-call-insight",
     featured: true,
     category: "Full Stack"
   },
   {
     id: "2",
+    title: "Libra",
+    description: "AI debate training copilot with real-time transcription, fallacy detection, and fact-checking",
+    longDescription: "Built an end-to-end debate coaching system with a React Native mobile app and Flask backend. Implemented turn-based audio capture, transcription, fallacy detection, and an agentic fact-checking pipeline with source attribution, plus post-debate summaries and analytics. Designed the architecture for parallel analysis and progressive UI updates so users receive faster, transparent feedback during each debate round.",
+    technologies: ["TypeScript", "React Native", "Expo", "Python", "Flask", "OpenAI", "ElevenLabs", "Zustand"],
+    images: [
+      `${basePath}/assets/libra1.png`,
+      `${basePath}/assets/libra2.png`
+    ],
+    sourceUrl: "https://github.com/RealDniel/libra",
+    featured: false,
+    category: "Mobile Full Stack"
+  },
+  {
+    id: "3",
     title: "MCP-Guardian",
     description: "Security middleware for AI Agent ecosystems with JWT authentication and rate limiting",
     longDescription: "Delivered a comprehensive security middleware for AI Agent ecosystems, enabling secure tool access via a single decorator-based API. Implemented configurable JWT authentication with RS256 signatures, scope-based authorization, and rate limiting for production-ready security. Established a security audit trail with structured JSON logging for real-time monitoring and compliance, capturing detailed authentication and authorization events to provide security teams with actionable intelligence for rapid incident response. Published as a Python package to PyPI with comprehensive documentation and real-world examples, reducing developer integration time from hours to minutes.",
@@ -155,7 +168,22 @@ export const projects: Project[] = [
     category: "Security/Infrastructure"
   },
   {
-    id: "3",
+    id: "4",
+    title: "Redflagged",
+    description: "Full-stack legal document analysis platform with AI-powered risk extraction (HackMIT 2025)",
+    longDescription: "Architected a comprehensive legal document analysis platform leveraging React/TypeScript frontend, Python backend, and Supabase for authentication and vector storage. Implemented secure RESTful API with FastAPI for document ingestion, preprocessing, and AI-powered risk extraction, enabling scalable handling of 500,000 character PDF/DOCX files. Developed RAG pipeline with HuggingFace Xenova and LangChain for semantic chunking and embedding generation. Built companion Chrome extension for seamless in-browser document highlighting and analysis.",
+    technologies: ["TypeScript", "React", "Python", "Tailwind CSS", "FastAPI", "Supabase", "HuggingFace", "LangChain", "Chrome Extension"],
+    images: [
+      `${basePath}/assets/redflagged1.png`,
+      `${basePath}/assets/redflagged2.png`
+    ],
+    demoUrl: "https://redflaggy.vercel.app",
+    sourceUrl: "https://github.com/zhenghchen/redflagged",
+    featured: false,
+    category: "Full Stack"
+  },
+  {
+    id: "5",
     title: "Eulerian Fluid Simulation",
     description: "Real-time C++ fluid simulation implementing Navier-Stokes equations (390K+ LinkedIn impressions)",
     longDescription: "Engineered a real-time C++ fluid simulation from first principles that generated 390,000+ impressions on LinkedIn, demonstrating ability to communicate complex technical work effectively. Implemented stable fluid solver applying incompressible Navier-Stokes equations, utilizing pressure projection and semi-Lagrangian advection for realistic, divergence-free flow. Achieved real-time performance (60+ FPS) on 200x200 grid through optimized data structures and efficient rendering pipeline within ~2MB memory footprint.",
@@ -169,7 +197,7 @@ export const projects: Project[] = [
     category: "Graphics/Simulation"
   },
   {
-    id: "4",
+    id: "6",
     title: "AI Writing Assistant (Chrome Extension)",
     description: "Chrome extension with Java Spring Boot backend for AI-powered writing assistance",
     longDescription: "Designed and implemented a robust RESTful backend using Java Spring Boot, supporting secure user authentication and encrypted API key management for cross-device synchronization. Built Chrome extension frontend with React and TypeScript, integrating real-time chat functionality and comprehensive settings dashboard. Developed modular backend architecture as provider-agnostic proxy, enabling seamless integration and dynamic switching between multiple LLM providers.",
