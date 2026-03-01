@@ -131,7 +131,7 @@ export const projects: Project[] = [
     title: "AI Filtering Workflow",
     description: "Multi-agent AI pipeline for investor screening and due diligence (CalHacks 2025)",
     longDescription: "Built an AI-native investor screening system that cuts diligence time from about one hour to under 10 minutes by orchestrating four specialized Claude agents in parallel. Implemented concurrent multi-agent analysis to achieve roughly 3x faster processing (about 15s versus 45s per analysis) while preserving decision quality. Added an autonomous verification layer using Model Context Protocol (MCP) with Google Custom Search to cross-reference founder claims across multiple web sources, and designed a PostgreSQL schema with JSONB columns and GIN indexes for efficient querying of nested conversation metadata and real-time update triggers.",
-    technologies: ["TypeScript", "Next.js", "React", "Supabase", "PostgreSQL", "Anthropic Claude", "MCP", "Google Custom Search API"],
+    technologies: ["TypeScript", "Next.js", "React", "Supabase", "PostgreSQL", "Google Custom Search API"],
     images: [
       `${basePath}/assets/aifiltering.png`
     ],
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     title: "Libra",
     description: "AI debate training copilot with real-time transcription, fallacy detection, and fact-checking",
     longDescription: "Built an end-to-end debate coaching system with a React Native mobile app and Flask backend. Implemented turn-based audio capture, transcription, fallacy detection, and an agentic fact-checking pipeline with source attribution, plus post-debate summaries and analytics. Designed the architecture for parallel analysis and progressive UI updates so users receive faster, transparent feedback during each debate round.",
-    technologies: ["TypeScript", "React Native", "Expo", "Python", "Flask", "OpenAI", "ElevenLabs", "Zustand"],
+    technologies: ["TypeScript", "React Native", "Expo", "Python", "Flask", "OpenAI", "ElevenLabs"],
     images: [
       `${basePath}/assets/libra1.png`,
       `${basePath}/assets/libra2.png`
